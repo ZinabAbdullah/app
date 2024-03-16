@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learletters/view/screens/home_screen.dart';
+import 'package:learletters/view/screens/home_screen1.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Blabeloo"),
-      home: HomeScreen(),
+      home: FirstHomeScreen(),
     );
   }
 }

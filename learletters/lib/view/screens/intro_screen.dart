@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learletters/view/screens/home_screen.dart';
+import 'package:learletters/view/screens/home_screen1.dart';
 
 import '../../components/custom_header.dart';
 
@@ -16,7 +16,7 @@ class _IntroScreenState extends State<IntroScreen> {
     return Scaffold(
       body: Center(
         child: CustomHeader(
-          navigateTo: (context) => HomeScreen(),
+          navigateTo: (context) => FirstHomeScreen(),
         ),
       ),
     );
