@@ -40,6 +40,8 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                 ),
                 CustomButton(
                   navigateTo: (context) => SecondHomeScreen(),
+                  backgroundColor: lightBlueColor,
+                  textBorderColor: lightBlackBorderColor,
                 )
               ],
             ),
