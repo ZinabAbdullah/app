@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
+import 'package:learletters/components/custom_nipclipper.dart';
 import '../../components/custom_button.dart';
 import '../../components/custom_header.dart';
 import 'home_screen2.dart';
@@ -32,8 +34,17 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                     Positioned(
                         top: 1,
                         right: -41,
-                        child: Image.asset("assets/images/haneen.png")),
+                        child: Image.asset("assets/images/majed.png")),
                   ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: LowerNipMessageSender(message: " اكتب كلمة أرنب "),
+                  // child: LowerNipMessageSender(
+                  //   message: "jjjj",
+                  // ),
                 ),
                 SizedBox(
                   height: 30,
@@ -42,6 +53,7 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                   navigateTo: (context) => SecondHomeScreen(),
                   backgroundColor: lightBlueColor,
                   textBorderColor: lightBlackBorderColor,
+                  title: 'التالي',
                 )
               ],
             ),

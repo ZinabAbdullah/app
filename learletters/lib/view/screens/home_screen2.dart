@@ -33,6 +33,7 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                   navigateTo: (context) => ThirdHomeScreen(),
                   backgroundColor: lightBlueColor,
                   textBorderColor: lightBlackBorderColor,
+                  title: 'التالي',
                 )
               ],
             ),

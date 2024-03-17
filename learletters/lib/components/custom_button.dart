@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import '../color.dart';
 
 class CustomButton extends StatelessWidget {
-  late WidgetBuilder navigateTo;
+  late WidgetBuilder? navigateTo;
+  late BuildContext context;
   late Color backgroundColor;
   late Color textBorderColor;
+  late String title;
 
   CustomButton(
-      {required this.navigateTo,
+      {this.navigateTo,
       required this.backgroundColor,
-      required this.textBorderColor});
+      required this.textBorderColor,
+      required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +23,11 @@ class CustomButton extends StatelessWidget {
       minWidth: 166.4,
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: navigateTo,
+          builder: navigateTo!,
         ));
       },
       child: Text(
-        "التالي",
+        title,
         style: TextStyle(
             color: whiteColor,
             fontSize: 25,
