@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learletters/components/custom_button.dart';
-
 import '../../color.dart';
 import '../../components/custom.dart';
 import '../../components/custom_header.dart';

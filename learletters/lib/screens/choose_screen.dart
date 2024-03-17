@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:learletters/components/custom_button.dart';
-import 'package:learletters/view/screens/home_screen1.dart';
 import '../../color.dart';
 import '../../components/custom_clipper.dart';
 import '../../components/custom_text.dart';
+import 'home_screen1.dart';
 
 class ChooseScreen extends StatefulWidget {
   const ChooseScreen({super.key});

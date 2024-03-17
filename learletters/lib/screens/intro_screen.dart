@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learletters/view/screens/home_screen1.dart';
 
 import '../../components/custom_header.dart';
+import 'home_screen1.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
