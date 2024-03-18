@@ -14,6 +14,8 @@ class FirstHomeScreen extends StatefulWidget {
 }
 
 class _FirstHomeScreenState extends State<FirstHomeScreen> {
+  int clickCount = 3;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +25,76 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                CustomHeader(
-                  navigateTo: (context) => SecondHomeScreen(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      child: Stack(
+                        children: [
+                          Image.asset("assets/images/buttonbackground.png"),
+                          Image.asset("assets/images/backword.png"),
+                        ],
+                        alignment: Alignment.center,
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    GestureDetector(
+                      child: Visibility(
+                        visible: clickCount == 0 ? true : false,
+                        child: Stack(
+                          children: [
+                            Image.asset("assets/images/buttonbackground.png"),
+                            Image.asset("assets/images/forword.png"),
+                          ],
+                          alignment: Alignment.center,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SecondHomeScreen(),
+                        ));
+                      },
+                    ),
+                  ],
                 ),
                 Image.asset("assets/images/ألف.png"),
                 SizedBox(
-                  height: 15,
+                  height: 40,
                 ),
-                Image.asset("assets/images/microphone.png"),
+                GestureDetector(
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.topRight,
+                    children: [
+                      Positioned(
+                        top: -25,
+                        right: 5,
+                        child: Text(
+                          clickCount == 3 || clickCount >= 1
+                              ? "$clickCount"
+                              : "",
+                          style: TextStyle(
+                            fontSize: 40,
+                            foreground: Paint()
+                              ..style = PaintingStyle.stroke
+                              ..strokeWidth = 2.0
+                              ..color = lightBlueColor,
+                          ),
+                        ),
+                      ),
+                      Image.asset("assets/images/microphone.png"),
+                    ],
+                  ),
+                  onTap: () {
+                    setState(() {
+                      if (clickCount == 3 || clickCount >= 1) {
+                        clickCount--;
+                      }
+                    });
+                  },
+                ),
                 SizedBox(
                   height: 50,
                 ),

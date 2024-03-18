@@ -13,6 +13,8 @@ class SecondHomeScreen extends StatefulWidget {
 }
 
 class _SecondHomeScreenState extends State<SecondHomeScreen> {
+  List<Offset> points = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,23 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                 CustomHeader(
                   navigateTo: (context) => ThirdHomeScreen(),
                 ),
-                Image.asset("assets/images/letter1.png"),
+                GestureDetector(
+                  child: Image.asset("assets/images/letter1.png"),
+                  onTap: () {},
+                ),
+                // onPanUpdate: (details) {
+                //   setState(() {
+                //     points.add(details.localPosition);
+                //   });
+                // },
+                // onPanEnd: (details) {
+                //   setState(() {
+                //     points.add(
+                //         null); // Add a null offset to mark the end of the touch path
+                //   });
+                // },
+                // child: CustomPaint(
+                //     painter: ImagePainter(points),
                 SizedBox(
                   height: 30,
                 ),
@@ -43,3 +61,28 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
     );
   }
 }
+
+// class ImagePainter extends CustomPainter {
+//   List<Offset> points;
+//
+//   ImagePainter(this.points);
+//
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     Paint paint = Paint()
+//       ..color = Colors.blue.withOpacity(0.5)
+//       ..strokeCap = StrokeCap.round
+//       ..strokeWidth = 10.0;
+//
+//     for (int i = 0; i < points.length - 1; i++) {
+//       if (points[i] != null && points[i + 1] != null) {
+//         canvas.drawLine(points[i], points[i + 1], paint);
+//       }
+//     }
+//   }
+//
+//   @override
+//   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+//     return true;
+//   }
+// }

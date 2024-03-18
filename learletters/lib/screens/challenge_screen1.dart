@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learletters/components/custom_button.dart';
 import '../../color.dart';
-import '../../components/custom.dart';
 import '../../components/custom_header.dart';
-import '../../components/custom_nipclipper.dart';
 import '../../components/custom_progress_bar.dart';
+import '../components/custom_message.dart';
 import 'challenge_screen2.dart';
 
 class FirstChallengeScreen extends StatefulWidget {
@@ -32,7 +31,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                 height: 98,
               ),
               SizedBox(
-                height: 500,
+                height: 400,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -41,8 +40,8 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                       children: [
                         Row(
                           children: [
-                            LowerNipMessage(
-                              message: 'يا ترى ماهو شكل الحرف الذي تسمعه',
+                            customMessage(
+                              'يا ترى ماهو شكل الحرف الذي تسمعه',
                             ),
                             Image.asset("assets/images/majed.png",
                                 height: 188, width: 121),
