@@ -4,14 +4,14 @@ import 'package:learletters/screens/challenge_screen1.dart';
 import '../color.dart';
 import 'home_screen1.dart';
 
-class FourthHomeScreen extends StatefulWidget {
-  const FourthHomeScreen({Key? key}) : super(key: key);
+class FourthCallengeScreen extends StatefulWidget {
+  const FourthCallengeScreen({Key? key}) : super(key: key);
 
   @override
-  _FourthHomeScreenState createState() => _FourthHomeScreenState();
+  _FourthCallengeScreenState createState() => _FourthCallengeScreenState();
 }
 
-class _FourthHomeScreenState extends State<FourthHomeScreen> {
+class _FourthCallengeScreenState extends State<FourthCallengeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +77,7 @@ class _FourthHomeScreenState extends State<FourthHomeScreen> {
                             height: 5,
                           ),
                           Text(
-                            "اكتملت المرحلة",
+                            "لقد اكملت التحدي",
                             style: TextStyle(
                                 color: whiteColor,
                                 fontSize: 24,
@@ -93,22 +93,9 @@ class _FourthHomeScreenState extends State<FourthHomeScreen> {
                   //Image.asset("assets/images/rectangle.png")
                   ),
               Positioned(
-                top: -112,
-                right: 120,
-                child: Row(
-                  children: [
-                    Image.asset("assets/images/leftstar.png"),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Image.asset("assets/images/bigstar.png"),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Image.asset("assets/images/rightstar.png"),
-                  ],
-                ),
-              ),
+                  top: -130,
+                  right: 160,
+                  child: Image.asset("assets/images/win.png")),
               Positioned(
                 top: 60,
                 right: 135,

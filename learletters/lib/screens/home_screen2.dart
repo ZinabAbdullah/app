@@ -22,38 +22,40 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                CustomHeader(
-                  navigateTo: (context) => ThirdHomeScreen(),
-                ),
-                GestureDetector(
-                  child: Image.asset("assets/images/letter1.png"),
-                  onTap: () {},
-                ),
-                // onPanUpdate: (details) {
-                //   setState(() {
-                //     points.add(details.localPosition);
-                //   });
-                // },
-                // onPanEnd: (details) {
-                //   setState(() {
-                //     points.add(
-                //         null); // Add a null offset to mark the end of the touch path
-                //   });
-                // },
-                // child: CustomPaint(
-                //     painter: ImagePainter(points),
-                SizedBox(
-                  height: 30,
-                ),
-                CustomButton(
-                  navigateTo: (context) => ThirdHomeScreen(),
-                  backgroundColor: lightBlueColor,
-                  textBorderColor: lightBlackBorderColor,
-                  title: 'التالي',
-                )
-              ],
+            child: Center(
+              child: Column(
+                children: [
+                  CustomHeader(
+                    navigateTo: (context) => ThirdHomeScreen(),
+                  ),
+                  GestureDetector(
+                    child: Image.asset("assets/images/letter1.png"),
+                    onTap: () {},
+                  ),
+                  // onPanUpdate: (details) {
+                  //   setState(() {
+                  //     points.add(details.localPosition);
+                  //   });
+                  // },
+                  // onPanEnd: (details) {
+                  //   setState(() {
+                  //     points.add(
+                  //         null); // Add a null offset to mark the end of the touch path
+                  //   });
+                  // },
+                  // child: CustomPaint(
+                  //     painter: ImagePainter(points),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  CustomButton(
+                    navigateTo: (context) => ThirdHomeScreen(),
+                    backgroundColor: lightBlueColor,
+                    textBorderColor: lightBlackBorderColor,
+                    title: 'التالي',
+                  )
+                ],
+              ),
             ),
           ),
         ),

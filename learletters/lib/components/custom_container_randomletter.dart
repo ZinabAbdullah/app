@@ -9,7 +9,6 @@ class CustomContainerRandomLetter extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        // padding: EdgeInsets.symmetric(vertical: 4, horizontal: 17),
         alignment: Alignment.center,
         child: Text(
           letter,

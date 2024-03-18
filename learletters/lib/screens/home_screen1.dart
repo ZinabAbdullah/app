@@ -43,12 +43,27 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                     GestureDetector(
                       child: Visibility(
                         visible: clickCount == 0 ? true : false,
-                        child: Stack(
-                          children: [
-                            Image.asset("assets/images/buttonbackground.png"),
-                            Image.asset("assets/images/forword.png"),
-                          ],
-                          alignment: Alignment.center,
+                        child: Container(
+                          height: clickCount < 1 ? 60 : 56,
+                          width: clickCount < 1 ? 60 : 56,
+                          decoration: BoxDecoration(
+                            boxShadow: clickCount < 1
+                                ? [
+                                    BoxShadow(
+                                      color: lightBlueColor,
+                                      blurRadius: 10,
+                                      // spreadRadius: 1,
+                                    )
+                                  ]
+                                : [],
+                          ),
+                          child: Stack(
+                            children: [
+                              Image.asset("assets/images/buttonbackground.png"),
+                              Image.asset("assets/images/forword.png"),
+                            ],
+                            alignment: Alignment.center,
+                          ),
                         ),
                       ),
                       onTap: () {
@@ -84,7 +99,9 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                           ),
                         ),
                       ),
-                      Image.asset("assets/images/microphone.png"),
+                      Image.asset(
+                        "assets/images/microphone.png",
+                      ),
                     ],
                   ),
                   onTap: () {
@@ -103,7 +120,15 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                   backgroundColor: lightBlueColor,
                   textBorderColor: lightBlackBorderColor,
                   title: 'التالي',
-                )
+                ),
+                MaterialButton(onPressed: () {
+                  setState(() {
+                    if (clickCount <= 1)
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SecondHomeScreen(),
+                      ));
+                  });
+                })
               ],
             ),
           ),
