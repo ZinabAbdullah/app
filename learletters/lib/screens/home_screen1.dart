@@ -16,13 +16,13 @@ class FirstHomeScreen extends StatefulWidget {
 }
 
 class _FirstHomeScreenState extends State<FirstHomeScreen> {
-  final audioPlayer = AudioPlayer();
-  bool isPlaying = false;
-
-  void dispose() {
-    audioPlayer.dispose();
-    super.dispose();
-  }
+  // final audioPlayer = AudioPlayer();
+  // bool isPlaying = false;
+  //
+  // void dispose() {
+  //   audioPlayer.dispose();
+  //   super.dispose();
+  // }
 
   int clickCount = 3;
   @override
@@ -117,13 +117,13 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                     ],
                   ),
                   onTap: () {
-                    final player = AudioPlayer();
-                    player.play(AssetSource('alph.mp3'));
-
                     // player.play(UrlSource('note1.wave'));
 
                     // player.setSourceAsset('alph.mp3');
                     setState(() {
+                      final player = AudioPlayer();
+                      player.play(AssetSource('alph.mp3'));
+                      player.dispose();
                       if (clickCount == 3 || clickCount >= 1) {
                         clickCount--;
                       }
@@ -143,7 +143,7 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                   },
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 60,
                 ),
                 CustomButton(
                   navigateTo: (context) => const SecondHomeScreen(),

@@ -245,7 +245,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
               // CustomButton(
               //     navigateTo: (context) => SecondChallengeScreen(),

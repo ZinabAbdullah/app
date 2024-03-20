@@ -31,7 +31,7 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                     navigateTo: (context) => const ThirdHomeScreen(),
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 70,
                   ),
                   GestureDetector(
                     child: Image.asset("assets/images/letter1.png"),
@@ -51,7 +51,7 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                   // child: CustomPaint(
                   //     painter: ImagePainter(points),
                   const SizedBox(
-                    height: 60,
+                    height: 160,
                   ),
                   CustomButton(
                     navigateTo: (context) => const ThirdHomeScreen(),
