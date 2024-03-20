@@ -3,7 +3,6 @@ import 'package:learletters/color.dart';
 import '../../components/custom_button.dart';
 import '../../components/custom_header.dart';
 import 'home_screen3.dart';
-import 'intro_screen.dart';
 
 class SecondHomeScreen extends StatefulWidget {
   const SecondHomeScreen({Key? key}) : super(key: key);
@@ -21,12 +20,18 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width / 30,
+              vertical: MediaQuery.of(context).size.height / 30,
+            ),
             child: Center(
               child: Column(
                 children: [
                   CustomHeader(
-                    navigateTo: (context) => ThirdHomeScreen(),
+                    navigateTo: (context) => const ThirdHomeScreen(),
+                  ),
+                  const SizedBox(
+                    height: 50,
                   ),
                   GestureDetector(
                     child: Image.asset("assets/images/letter1.png"),
@@ -45,11 +50,11 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                   // },
                   // child: CustomPaint(
                   //     painter: ImagePainter(points),
-                  SizedBox(
-                    height: 30,
+                  const SizedBox(
+                    height: 60,
                   ),
                   CustomButton(
-                    navigateTo: (context) => ThirdHomeScreen(),
+                    navigateTo: (context) => const ThirdHomeScreen(),
                     backgroundColor: lightBlueColor,
                     textBorderColor: lightBlackBorderColor,
                     title: 'التالي',

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 import 'package:learletters/screens/home_screen1.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,7 +9,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-
   late AnimationController _controller;
   late Animation<Offset> _topAnimation;
   late Animation<Offset> _rightAnimation;

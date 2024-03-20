@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:learletters/screens/challenge_screen1.dart';
-import 'package:learletters/screens/home_screen.dart';
-import 'package:learletters/screens/s.dart';
 import 'package:learletters/screens/splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'components/pop.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  sharedPreferences = await SharedPreferences.getInstance();
+  runApp(const MyApp());
+}
 
-void main() => runApp(MyApp());
+late SharedPreferences sharedPreferences;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Blabeloo"),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

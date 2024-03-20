@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learletters/components/custom_button.dart';
@@ -15,12 +16,43 @@ class FirstChallengeScreen extends StatefulWidget {
 }
 
 class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
+  int currentIndex = 0;
+
+  List<String> audio = [
+    "assets/audioes/alph.mp3",
+    "assets/audioes/alph.mp3",
+    "assets/audioes/alph.mp3"
+  ];
+
+  void goToNextScreen() {
+    if (currentIndex < audio.length - 1) {
+      setState(() {
+        currentIndex++;
+      });
+    } else {
+      // Navigate to a different screen if needed
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SecondChallengeScreen(),
+        ),
+      );
+    }
+  }
+
   int selectedletter = -1;
+
   List<String> letters = [
     "أ",
     "ب",
     "ت",
     "ث",
+  ];
+
+  List<double> progressvalue = [
+    20,
+    30,
+    40,
   ];
   @override
   Widget build(BuildContext context) {
@@ -28,13 +60,16 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width / 30,
+            vertical: MediaQuery.of(context).size.height / 30,
+          ),
           child: Column(
             children: [
               CustomHeader(
-                navigateTo: (context) => FirstChallengeScreen(),
+                navigateTo: (context) => const FirstChallengeScreen(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               SizedBox(
@@ -42,7 +77,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomProgressBar(progress: 20),
+                    CustomProgressBar(progress: progressvalue[currentIndex]),
                     Column(
                       children: [
                         Row(
@@ -55,36 +90,42 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.only(right: 100, top: 10),
+                          padding: const EdgeInsets.only(right: 100, top: 10),
                           child: Column(
                             children: [
-                              Stack(
-                                clipBehavior: Clip.none,
-                                alignment: Alignment.topRight,
-                                children: [
-                                  Positioned(
-                                    top: -22,
-                                    right: 20,
-                                    child: Text(
-                                      "3",
-                                      style: TextStyle(
-                                        fontSize: 50,
-                                        foreground: Paint()
-                                          ..style = PaintingStyle.stroke
-                                          ..strokeWidth = 2.0
-                                          ..color = lightBlueColor,
+                              GestureDetector(
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  alignment: Alignment.topRight,
+                                  children: [
+                                    Positioned(
+                                      top: -22,
+                                      right: 20,
+                                      child: Text(
+                                        "3",
+                                        style: TextStyle(
+                                          fontSize: 50,
+                                          foreground: Paint()
+                                            ..style = PaintingStyle.stroke
+                                            ..strokeWidth = 2.0
+                                            ..color = lightBlueColor,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Image.asset(
-                                    "assets/images/bigmicrophonep.png",
-                                  ),
-                                ],
+                                    Image.asset(
+                                      "assets/images/bigmicrophonep.png",
+                                    ),
+                                  ],
+                                ),
+                                onTap: () {
+                                  final player = AudioPlayer();
+                                  player.play(AssetSource(audio[currentIndex]));
+                                },
                               )
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 45,
                         ),
                         Directionality(
@@ -96,7 +137,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                               width: 300,
                               child: ListView.separated(
                                   separatorBuilder: (context, index) {
-                                    return SizedBox(
+                                    return const SizedBox(
                                       width: 30,
                                     );
                                   },
@@ -112,7 +153,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                                         child: Center(
                                           child: Text(
                                             "${letters[index]}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: whiteColor,
                                                 fontSize: 25,
                                                 shadows: [
@@ -128,6 +169,11 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                                       ),
                                       onTap: () {
                                         selectedletter = index;
+                                        if (selectedletter == currentIndex) {
+                                          final player = AudioPlayer();
+                                          player.play(AssetSource(
+                                              'assets/audioes/alph.mp3'));
+                                        }
                                       },
                                     );
                                   })),
@@ -198,14 +244,33 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              CustomButton(
-                  navigateTo: (context) => SecondChallengeScreen(),
-                  backgroundColor: lightBlueColor,
-                  textBorderColor: lightBlackBorderColor,
-                  title: "التالي")
+              // CustomButton(
+              //     navigateTo: (context) => SecondChallengeScreen(),
+              //     backgroundColor: lightBlueColor,
+              //     textBorderColor: lightBlackBorderColor,
+              //     title: "التالي")
+
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                color: lightBlueColor,
+                // height: 68.38,
+                // minWidth: 166.4,
+                height: MediaQuery.of(context).size.height / 10.5,
+                minWidth: MediaQuery.of(context).size.width / 2.5,
+                onPressed: () {
+                  goToNextScreen();
+                },
+                child: const Text(
+                  "التالي",
+                  style: TextStyle(color: whiteColor, fontSize: 25, shadows: [
+                    Shadow(color: lightBlackBorderColor, offset: Offset(-1, 1))
+                  ]),
+                ),
+              ),
             ],
           ),
         ),

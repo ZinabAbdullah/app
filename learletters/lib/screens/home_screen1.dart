@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 import '../../components/custom_button.dart';
-import '../../components/custom_header.dart';
+//import 'package:audioplayers/audio_cache.dart';
+import 'package:http/http.dart';
 import 'home_screen2.dart';
-import 'intro_screen.dart';
 
 class FirstHomeScreen extends StatefulWidget {
-  const FirstHomeScreen({Key? key}) : super(key: key);
+  const FirstHomeScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _FirstHomeScreenState createState() => _FirstHomeScreenState();
 }
 
 class _FirstHomeScreenState extends State<FirstHomeScreen> {
-  int clickCount = 3;
+  final audioPlayer = AudioPlayer();
+  bool isPlaying = false;
 
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
+  int clickCount = 3;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width / 30,
+              vertical: MediaQuery.of(context).size.height / 30,
+            ),
             child: Column(
               children: [
                 Row(
@@ -30,11 +42,11 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                   children: [
                     GestureDetector(
                       child: Stack(
+                        alignment: Alignment.center,
                         children: [
                           Image.asset("assets/images/buttonbackground.png"),
                           Image.asset("assets/images/backword.png"),
                         ],
-                        alignment: Alignment.center,
                       ),
                       onTap: () {
                         Navigator.of(context).pop();
@@ -49,7 +61,7 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                           decoration: BoxDecoration(
                             boxShadow: clickCount < 1
                                 ? [
-                                    BoxShadow(
+                                    const BoxShadow(
                                       color: lightBlueColor,
                                       blurRadius: 10,
                                       // spreadRadius: 1,
@@ -58,24 +70,24 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                                 : [],
                           ),
                           child: Stack(
+                            alignment: Alignment.center,
                             children: [
                               Image.asset("assets/images/buttonbackground.png"),
                               Image.asset("assets/images/forword.png"),
                             ],
-                            alignment: Alignment.center,
                           ),
                         ),
                       ),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SecondHomeScreen(),
+                          builder: (context) => const SecondHomeScreen(),
                         ));
                       },
                     ),
                   ],
                 ),
                 Image.asset("assets/images/ألف.png"),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 GestureDetector(
@@ -105,18 +117,36 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                     ],
                   ),
                   onTap: () {
+                    final player = AudioPlayer();
+                    player.play(AssetSource('alph.mp3'));
+
+                    // player.play(UrlSource('note1.wave'));
+
+                    // player.setSourceAsset('alph.mp3');
                     setState(() {
                       if (clickCount == 3 || clickCount >= 1) {
                         clickCount--;
                       }
                     });
+
+                    // If file located in assets folder like assets/sounds/note01.wave"
+
+                    // await player.play('assets/audioes/excellent.mp3');
+
+                    // if (isPlaying) {
+                    //   await audioPlayer.pause();
+                    // } else {
+                    //   audioPlayer.play("assets/audioes/excellent.mp3");
+                    // }
+
+                    // _audioPlayer.play('assets/audioes/excellent.mp3' as Source);
                   },
                 ),
-                SizedBox(
-                  height: 50,
+                const SizedBox(
+                  height: 20,
                 ),
                 CustomButton(
-                  navigateTo: (context) => SecondHomeScreen(),
+                  navigateTo: (context) => const SecondHomeScreen(),
                   backgroundColor: lightBlueColor,
                   textBorderColor: lightBlackBorderColor,
                   title: 'التالي',
@@ -125,7 +155,7 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                   setState(() {
                     if (clickCount <= 1)
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SecondHomeScreen(),
+                        builder: (context) => const SecondHomeScreen(),
                       ));
                   });
                 })

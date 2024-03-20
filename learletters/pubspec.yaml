@@ -40,6 +40,10 @@ dependencies:
   easy_stepper: ^0.8.3
   flutter_animation_progress_bar: ^2.3.1
   custom_clippers: ^2.0.0
+  audioplayers: ^5.2.1
+  http: ^1.1.0
+  shared_preferences: ^2.2.2
+
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +63,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/
 
 
   # The following line ensures that the Material Icons font is

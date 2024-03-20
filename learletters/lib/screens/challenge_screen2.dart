@@ -15,19 +15,59 @@ class SecondChallengeScreen extends StatefulWidget {
 }
 
 class _SecondChallengeScreenState extends State<SecondChallengeScreen> {
+  List<String> letters = [
+    "أ",
+    "ب",
+    "ت",
+    "ث",
+  ];
+
+  List<String> letterc = [
+    "أ",
+    "ب",
+    "ث",
+  ];
+
+  List<double> progressvalue = [
+    50,
+    60,
+    70,
+  ];
+
+  int currentIndex = 0;
+
+  void goToNextScreen() {
+    if (currentIndex < letterc.length - 1) {
+      setState(() {
+        currentIndex++;
+      });
+    } else {
+      // Navigate to a different screen if needed
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ThirdChallengeScreen(),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width / 30,
+            vertical: MediaQuery.of(context).size.height / 30,
+          ),
           child: Column(
             children: [
               CustomHeader(
-                navigateTo: (context) => SecondChallengeScreen(),
+                navigateTo: (context) => const SecondChallengeScreen(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               SizedBox(
@@ -35,19 +75,35 @@ class _SecondChallengeScreenState extends State<SecondChallengeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomProgressBar(progress: 40),
+                    CustomProgressBar(progress: progressvalue[currentIndex]),
                     Column(
                       children: [
                         Row(
                           children: [
-                            customMessage(
-                              'يا ترى ماهو شكل الحرف الذي تسمعه',
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                customMessage(
+                                  'يا صديقي هل بإمكانك ان تكتب هذا الحرف لي',
+                                ),
+                                Positioned(
+                                  top: 90,
+                                  right: 80,
+                                  child: Text(
+                                    letters[currentIndex],
+                                    style: const TextStyle(
+                                        fontSize: 40,
+                                        color: pinkColor,
+                                        fontFamily: "Monadi"),
+                                  ),
+                                )
+                              ],
                             ),
                             Image.asset("assets/images/majed.png",
                                 height: 188, width: 121),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                       ],
@@ -55,11 +111,24 @@ class _SecondChallengeScreenState extends State<SecondChallengeScreen> {
                   ],
                 ),
               ),
-              CustomButton(
-                  navigateTo: (context) => ThirdChallengeScreen(),
-                  backgroundColor: lightBlueColor,
-                  textBorderColor: lightBlackBorderColor,
-                  title: "التالي")
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                color: lightBlueColor,
+                // height: 68.38,
+                // minWidth: 166.4,
+                height: MediaQuery.of(context).size.height / 10.5,
+                minWidth: MediaQuery.of(context).size.width / 2.5,
+                onPressed: () {
+                  goToNextScreen();
+                },
+                child: const Text(
+                  "التالي",
+                  style: TextStyle(color: whiteColor, fontSize: 25, shadows: [
+                    Shadow(color: lightBlackBorderColor, offset: Offset(-1, 1))
+                  ]),
+                ),
+              ),
             ],
           ),
         ),
