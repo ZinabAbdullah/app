@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../components/custom_button.dart';
-//import 'package:audioplayers/audio_cache.dart';
 import 'package:http/http.dart';
 import 'home_screen2.dart';
 
@@ -17,7 +16,8 @@ class FirstHomeScreen extends StatefulWidget {
 
 class _FirstHomeScreenState extends State<FirstHomeScreen> {
   // final audioPlayer = AudioPlayer();
-  // bool isPlaying = false;
+  bool isPlaying = false;
+  int click = 0;
   //
   // void dispose() {
   //   audioPlayer.dispose();
@@ -116,28 +116,28 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                       ),
                     ],
                   ),
-                  onTap: () {
-                    // player.play(UrlSource('note1.wave'));
-
-                    // player.setSourceAsset('alph.mp3');
+                  onTap: () async {
                     setState(() {
-                      final player = AudioPlayer();
-                      player.play(AssetSource('alph.mp3'));
-                      player.dispose();
-                      if (clickCount == 3 || clickCount >= 1) {
-                        clickCount--;
-                      }
+                      click++;
+                      // final player = AudioPlayer();
+                      // player.play(AssetSource('alph.mp3'));
+                      // player.dispose();
                     });
+
+                    final player = AudioPlayer();
+                    if (isPlaying) {
+                      await player.pause();
+                    } else {
+                      player.play(AssetSource('alph.mp3'));
+                    }
+
+                    if (clickCount == 3 || clickCount >= 1) {
+                      clickCount--;
+                    }
 
                     // If file located in assets folder like assets/sounds/note01.wave"
 
                     // await player.play('assets/audioes/excellent.mp3');
-
-                    // if (isPlaying) {
-                    //   await audioPlayer.pause();
-                    // } else {
-                    //   audioPlayer.play("assets/audioes/excellent.mp3");
-                    // }
 
                     // _audioPlayer.play('assets/audioes/excellent.mp3' as Source);
                   },
@@ -153,7 +153,7 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                 ),
                 MaterialButton(onPressed: () {
                   setState(() {
-                    if (clickCount <= 1)
+                    if (click > 2)
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const SecondHomeScreen(),
                       ));

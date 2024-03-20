@@ -18,11 +18,7 @@ class FirstChallengeScreen extends StatefulWidget {
 class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
   int currentIndex = 0;
 
-  List<String> audio = [
-    "assets/audioes/alph.mp3",
-    "assets/audioes/alph.mp3",
-    "assets/audioes/alph.mp3"
-  ];
+  List<String> audio = ["alph.mp3", "alph.mp3", "alph.mp3"];
 
   void goToNextScreen() {
     if (currentIndex < audio.length - 1) {
@@ -171,8 +167,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                                         selectedletter = index;
                                         if (selectedletter == currentIndex) {
                                           final player = AudioPlayer();
-                                          player.play(AssetSource(
-                                              'assets/audioes/alph.mp3'));
+                                          player.play(AssetSource('alph.mp3'));
                                         }
                                       },
                                     );
