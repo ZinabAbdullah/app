@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
 import '../../components/custom_button.dart';
 import '../../components/custom_header.dart';
+import '../components/custom_paint.dart';
+import '../components/custom_paint.dart';
 import 'home_screen3.dart';
 
 class SecondHomeScreen extends StatefulWidget {
@@ -12,7 +14,25 @@ class SecondHomeScreen extends StatefulWidget {
 }
 
 class _SecondHomeScreenState extends State<SecondHomeScreen> {
-  List<Offset> points = [];
+  bool isTouching = false;
+
+  get points => null;
+  // ui.Image image;
+  // List<Offset> points = <Offset>[];
+  // bool isMatched = false;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   loadImage();
+  // }
+  //
+  // void loadImage() async {
+  //   final ByteData data = await rootBundle.load('assets/images/letter1.jpg');
+  //   final Uint8List bytes = data.buffer.asUint8List();
+  //   image = await decodeImageFromList(bytes);
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -25,43 +45,32 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
               vertical: MediaQuery.of(context).size.height / 30,
             ),
             child: Center(
-              child: Column(
+                child: Column(children: [
+              CustomHeader(
+                navigateTo: (context) => const ThirdHomeScreen(),
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              Stack(
+                alignment: Alignment.topCenter,
                 children: [
-                  CustomHeader(
-                    navigateTo: (context) => const ThirdHomeScreen(),
-                  ),
-                  const SizedBox(
-                    height: 70,
-                  ),
-                  GestureDetector(
-                    child: Image.asset("assets/images/letter1.png"),
-                    onTap: () {},
-                  ),
-                  // onPanUpdate: (details) {
-                  //   setState(() {
-                  //     points.add(details.localPosition);
-                  //   });
-                  // },
-                  // onPanEnd: (details) {
-                  //   setState(() {
-                  //     points.add(
-                  //         null); // Add a null offset to mark the end of the touch path
-                  //   });
-                  // },
-                  // child: CustomPaint(
-                  //     painter: ImagePainter(points),
-                  const SizedBox(
-                    height: 160,
-                  ),
-                  CustomButton(
-                    navigateTo: (context) => const ThirdHomeScreen(),
-                    backgroundColor: lightBlueColor,
-                    textBorderColor: lightBlackBorderColor,
-                    title: 'التالي',
-                  )
+                  SizedBox(
+                      height: 278.43,
+                      child: Image.asset("assets/images/letter1.png")),
+                  SizedBox(height: 200, width: 20, child: DrawOnLetter()),
                 ],
               ),
-            ),
+              SizedBox(
+                height: 150,
+              ),
+              CustomButton(
+                navigateTo: (context) => const ThirdHomeScreen(),
+                backgroundColor: lightBlueColor,
+                textBorderColor: lightBlackBorderColor,
+                title: 'التالي',
+              ),
+            ])),
           ),
         ),
       ),

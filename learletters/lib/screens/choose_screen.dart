@@ -1,11 +1,15 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:learletters/components/custom_button.dart';
 import 'package:learletters/main.dart';
-import 'package:learletters/screens/screen_points.dart';
+import 'package:learletters/models/level_model.dart';
+import 'package:learletters/screens/levels_screen.dart';
 import '../components/custom_clipper.dart';
 import '../components/custom_text.dart';
 import '../color.dart';
+import '../models/level_model.dart';
 
 class ScreenChoose extends StatefulWidget {
   const ScreenChoose({super.key});
@@ -15,8 +19,27 @@ class ScreenChoose extends StatefulWidget {
 }
 
 class _ScreenChooseState extends State<ScreenChoose> {
-  String perconalName = "حنين";
+  LevelModel levelModel = LevelModel();
 
+  fetchUserData(String pName, String gender) async {
+    var url = Uri.parse(
+        "https://coderteam.net/api/auth/login?username='$pName'&current_level=1&current_lesson=1&score=4&level_id=1&gender=$gender");
+
+    var result = await post(url);
+    var respone = jsonDecode(result.body);
+    levelModel.accessToken = respone["accessToken"];
+    levelModel.message = respone["message"];
+  }
+
+  @override
+  void initState() {
+    fetchUserData(perconalName, gender);
+
+    super.initState();
+  }
+
+  String perconalName = "حنين";
+  String gender = "female";
   Color hanenColor = pinkColor;
   Color hanenColorBorder = pinkColor;
   Color hanenColorContainer = pinkColor;
@@ -66,6 +89,7 @@ class _ScreenChooseState extends State<ScreenChoose> {
                           widthHanen = 310;
                           btnColor = pinkColor;
                           perconalName = "حنين";
+                          gender = "female";
                           sharedPreferences.setString("name", perconalName);
                           sharedPreferences.setString("image", pathImage);
                         });
@@ -113,7 +137,7 @@ class _ScreenChooseState extends State<ScreenChoose> {
                           {
                             setState(() {
                               perconalName = "ماجد";
-
+                              gender = "male";
                               pathImage = "assets/images/majed.png";
                               hanenColorContainer =
                                   hanenColorContainer.withOpacity(0.1);
@@ -184,7 +208,12 @@ class _ScreenChooseState extends State<ScreenChoose> {
               backgroundColor: btnColor,
               textBorderColor: lightBlackBorderColor,
               title: "اختيار",
-              navigateTo: (context) => ScreenPoints(pathImage: pathImage),
+              navigateTo: (context) {
+                fetchUserData(perconalName, gender);
+                sharedPreferences.setString("token", levelModel.accessToken!);
+
+                return const LevelsScreen();
+              },
             ),
           )
         ],

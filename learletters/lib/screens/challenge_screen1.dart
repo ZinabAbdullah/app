@@ -134,7 +134,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                               child: ListView.separated(
                                   separatorBuilder: (context, index) {
                                     return const SizedBox(
-                                      width: 30,
+                                      width: 25,
                                     );
                                   },
                                   scrollDirection: Axis.horizontal,

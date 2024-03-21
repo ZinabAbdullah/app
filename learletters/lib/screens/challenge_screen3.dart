@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:learletters/screens/challenge_screen1.dart';
+import 'package:learletters/screens/levels_screen.dart';
 import '../../color.dart';
 import '../../components/custom_header.dart';
 import '../../components/custom_progress_bar.dart';
@@ -90,9 +91,6 @@ class _ThirdChallengeScreenState extends State<ThirdChallengeScreen> {
                                 height: 188, width: 121),
                           ],
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
                         Image.asset(
                           images[currentIndex],
                           width: 256,
@@ -163,8 +161,7 @@ class _ThirdChallengeScreenState extends State<ThirdChallengeScreen> {
                               selectedletter = index;
                               if (selectedletter == currentIndex) {
                                 final player = AudioPlayer();
-                                player.play(
-                                    AssetSource('assets/audioes/alph.mp3'));
+                                player.play(AssetSource('excellent.mp3'));
                               }
                             },
                           );
@@ -355,7 +352,7 @@ class _ThirdChallengeScreenState extends State<ThirdChallengeScreen> {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
                                           builder: (context) =>
-                                              const ThirdChallengeScreen(),
+                                              const LevelsScreen(),
                                         ));
                                       },
                                     ),

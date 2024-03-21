@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../components/custom_button.dart';
-import 'package:http/http.dart';
+import '../components/custom_paint.dart';
 import 'home_screen2.dart';
+import 'package:dio/dio.dart';
 
 class FirstHomeScreen extends StatefulWidget {
   const FirstHomeScreen({
@@ -15,6 +16,25 @@ class FirstHomeScreen extends StatefulWidget {
 }
 
 class _FirstHomeScreenState extends State<FirstHomeScreen> {
+  @override
+  void initState() {
+    //getletter();
+    super.initState();
+  }
+
+  // var jsonList;
+  // void getletter() async {
+  //   final response =
+  //       await Dio().get('https://jsonplaceholder.typicode.com/users');
+  //   print(response.data[1]["id"]);
+  // }
+  //
+  // @override
+  // void setState(VoidCallback fn) {
+  //   //jsonList response.
+  //   super.setState(fn);
+  // }
+
   // final audioPlayer = AudioPlayer();
   bool isPlaying = false;
   int click = 0;
@@ -53,30 +73,37 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                       },
                     ),
                     GestureDetector(
-                      child: Visibility(
-                        visible: clickCount == 0 ? true : false,
-                        child: Container(
-                          height: clickCount < 1 ? 60 : 56,
-                          width: clickCount < 1 ? 60 : 56,
-                          decoration: BoxDecoration(
-                            boxShadow: clickCount < 1
-                                ? [
-                                    const BoxShadow(
-                                      color: lightBlueColor,
-                                      blurRadius: 10,
-                                      // spreadRadius: 1,
-                                    )
-                                  ]
-                                : [],
-                          ),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Image.asset("assets/images/buttonbackground.png"),
-                              Image.asset("assets/images/forword.png"),
-                            ],
-                          ),
-                        ),
+                      // child: Visibility(
+                      //   visible: clickCount == 0 ? true : false,
+                      //   child: Container(
+                      //     height: clickCount < 1 ? 60 : 56,
+                      //     width: clickCount < 1 ? 60 : 56,
+                      //     decoration: BoxDecoration(
+                      //       boxShadow: clickCount < 1
+                      //           ? [
+                      //               const BoxShadow(
+                      //                 color: lightBlueColor,
+                      //                 blurRadius: 10,
+                      //                 // spreadRadius: 1,
+                      //               )
+                      //             ]
+                      //           : [],
+                      //     ),
+                      //     child: Stack(
+                      //       alignment: Alignment.center,
+                      //       children: [
+                      //         Image.asset("assets/images/buttonbackground.png"),
+                      //         Image.asset("assets/images/forword.png"),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Image.asset("assets/images/buttonbackground.png"),
+                          Image.asset("assets/images/forword.png"),
+                        ],
                       ),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -87,7 +114,7 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                   ],
                 ),
                 Image.asset("assets/images/ألف.png"),
-                const SizedBox(
+                SizedBox(
                   height: 40,
                 ),
                 GestureDetector(
@@ -151,14 +178,6 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                   textBorderColor: lightBlackBorderColor,
                   title: 'التالي',
                 ),
-                MaterialButton(onPressed: () {
-                  setState(() {
-                    if (click > 2)
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const SecondHomeScreen(),
-                      ));
-                  });
-                })
               ],
             ),
           ),

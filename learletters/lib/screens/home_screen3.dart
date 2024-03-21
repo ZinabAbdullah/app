@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
 import 'package:learletters/screens/home_screen1.dart';
 import '../../components/custom_header.dart';
+import '../components/custom_dialog.dart';
 import '../components/custom_lettercolumn.dart';
 import '../components/custom_message.dart';
+import '../models/servece.dart';
 import 'home_screen2.dart';
+import 'package:flutter/services.dart';
+
 import 'levels_screen.dart';
 
 class ThirdHomeScreen extends StatefulWidget {
@@ -20,7 +24,11 @@ class ThirdHomeScreen extends StatefulWidget {
 class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
   int selectedletter = 0;
   String letter = " ";
+  List wordList = [];
+
   List genLatterRandom(String target) {
+    wordList = target.split('');
+
     List allletters = [
       'أ',
       'ب',
@@ -72,20 +80,11 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
   }
 
   var result = [];
-  @override
   void initState() {
-    result = genLatterRandom("أرنب");
+    result = genLatterRandom(Word!);
 
     super.initState();
   }
-
-  // bool _isPopupVisible = false;
-  //
-  // void _togglePopupVisibility() {
-  //   setState(() {
-  //     _isPopupVisible = !_isPopupVisible;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +123,7 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                       top: -30,
                       right: 40,
                       child: Container(
-                        child: customMessage(" اكتب كلمة أرنب "),
+                        child: customMessage(" اكتب كلمة $Word  "),
                       ),
                     ),
                   ],
@@ -136,13 +135,18 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                   textDirection: TextDirection.rtl,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomLetterColumn(text: letter),
+                    ...List.generate(
+                      wordList.length,
+                      (index) => CustomLetterColumn(
+                          text: index == 0 ? letter : "${wordList[index]}"),
+                    ),
+                    // CustomLetterColumn(text: letter),
                     // text: selectedletter == -1
                     //     ? ""
                     //     : "${result[selectedletter]}"),
-                    CustomLetterColumn(text: "ر"),
-                    CustomLetterColumn(text: "ن"),
-                    CustomLetterColumn(text: "ب"),
+                    // CustomLetterColumn(text: "ر"),
+                    // CustomLetterColumn(text: "ن"),
+                    // CustomLetterColumn(text: "ب"),
                   ],
                 ),
                 const SizedBox(
@@ -189,6 +193,9 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                                 if (letter == "أ") {
                                   final player = AudioPlayer();
                                   player.play(AssetSource('excellent.mp3'));
+                                } else {
+                                  final player = AudioPlayer();
+                                  player.play(AssetSource('retry.mp3'));
                                 }
                               },
                             );
@@ -199,50 +206,6 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                           })),
                     ),
                   ),
-                  // child: Directionality(
-                  //   textDirection: TextDirection.rtl,
-                  //   child: Column(
-                  //     children: [
-                  //       Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //         children: [
-                  //           CustomContainerRandomLetter(
-                  //             letter: "خ",
-                  //           ),
-                  //           CustomContainerRandomLetter(
-                  //             letter: "أ",
-                  //           ),
-                  //           CustomContainerRandomLetter(
-                  //             letter: "ي",
-                  //           ),
-                  //           CustomContainerRandomLetter(
-                  //             letter: "ر",
-                  //           ),
-                  //         ],
-                  //       ),
-                  //       SizedBox(
-                  //         height: 20,
-                  //       ),
-                  //       Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //         children: [
-                  //           CustomContainerRandomLetter(
-                  //             letter: "ن",
-                  //           ),
-                  //           CustomContainerRandomLetter(
-                  //             letter: "ب",
-                  //           ),
-                  //           CustomContainerRandomLetter(
-                  //             letter: "ث",
-                  //           ),
-                  //           CustomContainerRandomLetter(
-                  //             letter: "ع",
-                  //           ),
-                  //         ],
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
                 ),
                 const SizedBox(
                   height: 30,
@@ -365,7 +328,10 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                                     const SizedBox(
                                       width: 10,
                                     ),
-                                    Image.asset("assets/images/rightstar.png"),
+                                    Visibility(
+                                        visible: letter == "أ" ? true : false,
+                                        child: Image.asset(
+                                            "assets/images/rightstar.png")),
                                   ],
                                 ),
                               ),
@@ -466,111 +432,6 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                     ]),
                   ),
                 ),
-                // MaterialButton(
-                //   shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(10)),
-                //   color: lightBlueColor,
-                //   height: MediaQuery.of(context).size.height / 10.5,
-                //   minWidth: MediaQuery.of(context).size.width / 2.5,
-                //   onPressed: () {
-                //     showDialog(
-                //       barrierColor: popUpColor,
-                //       context: context,
-                //       builder: (BuildContext context) {
-                //         return AlertDialog(
-                //           shape: RoundedRectangleBorder(
-                //               borderRadius: BorderRadius.circular(30)),
-                //           shadowColor: pinkColor,
-                //           title: Stack(
-                //             children: [
-                //               Row(
-                //                 children: [
-                //                   Image.asset("assets/images/leftstar.png"),
-                //                   Image.asset("assets/images/bigstar.png"),
-                //                   Image.asset("assets/images/rightstar.png"),
-                //                 ],
-                //               ),
-                //             ],
-                //           ),
-                //           content: Container(
-                //             width: 266,
-                //             height: 235,
-                //             decoration: BoxDecoration(
-                //                 color: popUpColor,
-                //                 borderRadius: BorderRadius.circular(30),
-                //                 boxShadow: [
-                //                   BoxShadow(
-                //                       color: pinkColor, offset: Offset(0, 4)),
-                //                 ]),
-                //             child: Column(
-                //               children: [
-                //                 Text("عمل رائع"),
-                //               ],
-                //             ),
-                //           ),
-                //           actions: <Widget>[
-                //             Stack(
-                //               children: [
-                //                 Row(
-                //                   mainAxisAlignment:
-                //                   MainAxisAlignment.spaceEvenly,
-                //                   children: [
-                //                     GestureDetector(
-                //                       child: Stack(
-                //                         children: [
-                //                           Image.asset(
-                //                               "assets/images/buttonbackground.png"),
-                //                           Image.asset(
-                //                               "assets/images/restar.png"),
-                //                         ],
-                //                         alignment: Alignment.center,
-                //                       ),
-                //                       onTap: () {
-                //                         Navigator.of(context)
-                //                             .push(MaterialPageRoute(
-                //                           builder: (context) =>
-                //                               FirstHomeScreen(),
-                //                         ));
-                //                       },
-                //                     ),
-                //                     GestureDetector(
-                //                       child: Stack(
-                //                         children: [
-                //                           Image.asset(
-                //                               "assets/images/buttonbackground.png"),
-                //                           Image.asset(
-                //                               "assets/images/forword.png"),
-                //                         ],
-                //                         alignment: Alignment.center,
-                //                       ),
-                //                       onTap: () {
-                //                         Navigator.of(context).pop();
-                //                       },
-                //                     ),
-                //                   ],
-                //                 )
-                //               ],
-                //             )
-                //           ],
-                //         );
-                //       },
-                //     );
-                //   },
-                //   child: Text(
-                //     "التالي",
-                //     style: TextStyle(color: whiteColor, fontSize: 25, shadows: [
-                //       Shadow(
-                //           color: lightBlackBorderColor, offset: Offset(-1, 1))
-                //     ]),
-                //   ),
-                // ),
-                // MaterialButton(
-                //     child: Text("hhh"),
-                //     onPressed: () {
-                //       setState(() {
-                //         PopupOverlayExample();
-                //       });
-                //     })
               ],
             ),
           ),

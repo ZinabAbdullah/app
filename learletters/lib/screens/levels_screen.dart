@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
 import 'package:learletters/components/custom_text.dart';
 import 'package:learletters/main.dart';
+import 'package:learletters/models/servece.dart';
 import 'package:learletters/screens/challenge_screen1.dart';
 import '../components/custom_progress_bar.dart';
 import 'home_screen1.dart';
@@ -26,6 +27,7 @@ class _LevelsScreenState extends State<LevelsScreen>
   late Animation<Offset> slidingAnimation;
   @override
   void initState() {
+    fetchLessonData();
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
