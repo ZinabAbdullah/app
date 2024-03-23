@@ -11,6 +11,7 @@ import '../components/custom_message.dart';
 import '../models/servece.dart';
 import 'home_screen2.dart';
 import 'package:flutter/services.dart';
+import 'levels_screen.dart';
 
 import 'levels_screen.dart';
 
@@ -223,206 +224,218 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                   height: MediaQuery.of(context).size.height / 10.5,
                   minWidth: MediaQuery.of(context).size.width / 2.5,
                   onPressed: () {
-                    showDialog(
-                      barrierDismissible: false,
-                      barrierColor: Colors.black45,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Center(
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: 235,
-                                width: 266,
-                                decoration: BoxDecoration(
-                                    color: popUpColor,
-                                    borderRadius: BorderRadius.circular(30),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: pinkColor,
-                                          offset: Offset(0, 4)),
-                                    ]),
-                              ),
-                              Positioned(
-                                  top: -160,
-                                  right: 30,
-                                  child:
-                                      Image.asset("assets/images/light.png")),
-                              Positioned(
-                                  top: -30,
-                                  right: 50,
-                                  child: Image.asset(
-                                      "assets/images/rightrectangle.png")),
-                              Positioned(
-                                  top: -30,
-                                  left: 50,
-                                  child: Image.asset(
-                                      "assets/images/leftrectangle.png")),
-                              Positioned(
-                                  top: -60,
-                                  child: Container(
-                                    width: 254.98,
-                                    height: 96.33,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        gradient: const LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                            popUpColor,
-                                            lightBlueBorderColor,
+                    if (letter != "أ") {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ThirdHomeScreen(),
+                      ));
+                    } else {
+                      showDialog(
+                        barrierDismissible: false,
+                        barrierColor: Colors.black45,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  height: 235,
+                                  width: 266,
+                                  decoration: BoxDecoration(
+                                      color: popUpColor,
+                                      borderRadius: BorderRadius.circular(30),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: pinkColor,
+                                            offset: Offset(0, 4)),
+                                      ]),
+                                ),
+                                Positioned(
+                                    top: -160,
+                                    right: 30,
+                                    child:
+                                        Image.asset("assets/images/light.png")),
+                                Positioned(
+                                    top: -30,
+                                    right: 50,
+                                    child: Image.asset(
+                                        "assets/images/rightrectangle.png")),
+                                Positioned(
+                                    top: -30,
+                                    left: 50,
+                                    child: Image.asset(
+                                        "assets/images/leftrectangle.png")),
+                                Positioned(
+                                    top: -60,
+                                    child: Container(
+                                      width: 254.98,
+                                      height: 96.33,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [
+                                              popUpColor,
+                                              lightBlueBorderColor,
+                                            ],
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                                color: pinkColor,
+                                                offset: Offset(0, 4)),
+                                          ]),
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(top: 25.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "المرحلة الاولى",
+                                              style: TextStyle(
+                                                color: whiteColor,
+                                                fontSize: 15,
+                                                fontFamily: "Monadi",
+                                                decoration: TextDecoration.none,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              "اكتملت المرحلة",
+                                              style: TextStyle(
+                                                  color: whiteColor,
+                                                  fontSize: 24,
+                                                  decoration:
+                                                      TextDecoration.none,
+                                                  shadows: [
+                                                    Shadow(
+                                                        color: pinkColor,
+                                                        offset: Offset(-1, 1))
+                                                  ]),
+                                            )
                                           ],
                                         ),
-                                        borderRadius: BorderRadius.circular(30),
-                                        boxShadow: const [
-                                          BoxShadow(
-                                              color: pinkColor,
-                                              offset: Offset(0, 4)),
-                                        ]),
-                                    child: const Padding(
-                                      padding: EdgeInsets.only(top: 25.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "المرحلة الاولى",
-                                            style: TextStyle(
-                                              color: whiteColor,
-                                              fontSize: 15,
-                                              fontFamily: "Monadi",
-                                              decoration: TextDecoration.none,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            "اكتملت المرحلة",
-                                            style: TextStyle(
-                                                color: whiteColor,
-                                                fontSize: 24,
-                                                decoration: TextDecoration.none,
-                                                shadows: [
-                                                  Shadow(
-                                                      color: pinkColor,
-                                                      offset: Offset(-1, 1))
-                                                ]),
-                                          )
-                                        ],
                                       ),
+                                    )
+                                    //Image.asset("assets/images/rectangle.png")
                                     ),
-                                  )
-                                  //Image.asset("assets/images/rectangle.png")
-                                  ),
-                              Positioned(
-                                top: -112,
-                                right: 120,
-                                child: Row(
-                                  children: [
-                                    Image.asset("assets/images/leftstar.png"),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Image.asset("assets/images/bigstar.png"),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Visibility(
-                                        visible: letter == "أ" ? true : false,
-                                        child: Image.asset(
-                                            "assets/images/rightstar.png")),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 60,
-                                right: 135,
-                                child: Container(
-                                  // margin: EdgeInsets.only(top: 40),
-                                  child: Column(
+                                Positioned(
+                                  top: -112,
+                                  right: 120,
+                                  child: Row(
                                     children: [
-                                      const Text(
-                                        "عمل رائع",
-                                        style: TextStyle(
-                                            fontFamily: "Monadi",
-                                            fontSize: 32,
-                                            color: lightBlueBorderColor,
-                                            decoration: TextDecoration.none),
-                                      ),
+                                      Image.asset("assets/images/leftstar.png"),
                                       const SizedBox(
-                                        height: 20,
+                                        width: 10,
                                       ),
-                                      Row(
-                                        children: [
-                                          Image.asset("assets/images/star.png"),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          const Text(
-                                            "X10",
-                                            style: TextStyle(
-                                              color: pinkColor,
-                                              fontSize: 24,
-                                              decoration: TextDecoration.none,
-                                            ),
-                                          ),
-                                        ],
-                                      )
+                                      Image.asset("assets/images/bigstar.png"),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Visibility(
+                                          visible: letter == "أ" ? true : false,
+                                          child: Image.asset(
+                                              "assets/images/rightstar.png")),
                                     ],
                                   ),
                                 ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(top: 220),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    GestureDetector(
-                                      child: Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          Image.asset(
-                                              "assets/images/buttonbackground.png"),
-                                          Image.asset(
-                                              "assets/images/restart.png"),
-                                        ],
-                                      ),
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) =>
-                                              const FirstHomeScreen(),
-                                        ));
-                                      },
+                                Positioned(
+                                  top: 60,
+                                  right: 135,
+                                  child: Container(
+                                    // margin: EdgeInsets.only(top: 40),
+                                    child: Column(
+                                      children: [
+                                        const Text(
+                                          "عمل رائع",
+                                          style: TextStyle(
+                                              fontFamily: "Monadi",
+                                              fontSize: 32,
+                                              color: lightBlueBorderColor,
+                                              decoration: TextDecoration.none),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                                "assets/images/star.png"),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            const Text(
+                                              "X10",
+                                              style: TextStyle(
+                                                color: pinkColor,
+                                                fontSize: 24,
+                                                decoration: TextDecoration.none,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
-                                    GestureDetector(
-                                      child: Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          Image.asset(
-                                              "assets/images/buttonbackground.png"),
-                                          Image.asset(
-                                              "assets/images/forword.png"),
-                                        ],
-                                      ),
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LevelsScreen(),
-                                        ));
-                                      },
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                    );
+                                Container(
+                                  margin: const EdgeInsets.only(top: 220),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      GestureDetector(
+                                        child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Image.asset(
+                                                "assets/images/buttonbackground.png"),
+                                            Image.asset(
+                                                "assets/images/restart.png"),
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                const FirstHomeScreen(),
+                                          ));
+                                        },
+                                      ),
+                                      GestureDetector(
+                                        child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Image.asset(
+                                                "assets/images/buttonbackground.png"),
+                                            Image.asset(
+                                                "assets/images/forword.png"),
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          selecteIndex = 2;
+                                          prograssCurentValue = 50;
+
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LevelsScreen(),
+                                          ));
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
                   },
                   child: const Text(
                     "التالي",

@@ -213,7 +213,9 @@ class _LevelsScreenState extends State<LevelsScreen>
             height: 50,
             margin: const EdgeInsets.symmetric(horizontal: 170, vertical: 20),
             decoration: BoxDecoration(
-              border: Border.all(color: blueColor, width: 4),
+              border: Border.all(
+                  color: selecteIndex >= index ? keywordLetterColor : blueColor,
+                  width: 4),
               image: DecorationImage(
                 image: selecteIndex >= index
                     ? const AssetImage("assets/images/leftstar.png")
