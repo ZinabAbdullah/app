@@ -4,6 +4,8 @@ import '../../color.dart';
 import '../../components/custom_header.dart';
 import '../../components/custom_progress_bar.dart';
 import '../components/custom_message.dart';
+import '../components/custome_paint_letter.dart';
+import '../main.dart';
 import 'challenge_screen3.dart';
 
 class SecondChallengeScreen extends StatefulWidget {
@@ -98,18 +100,18 @@ class _SecondChallengeScreenState extends State<SecondChallengeScreen> {
                                 )
                               ],
                             ),
-                            Image.asset("assets/images/majed.png",
-                                height: 188, width: 121),
+                            Image.asset(
+                                "${sharedPreferences.getString("image")}",
+                                height: 188,
+                                width: 121),
                           ],
-                        ),
-                        const SizedBox(
-                          height: 15,
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
+              //    Container(height: 200, width: 200, child: DrawingApp()),
               MaterialButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),

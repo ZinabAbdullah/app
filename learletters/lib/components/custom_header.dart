@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomHeader extends StatefulWidget {
-  late WidgetBuilder? navigateTo;
+  late WidgetBuilder navigateTo;
   CustomHeader({required this.navigateTo});
 
   @override
@@ -36,11 +36,9 @@ class _CustomHeaderState extends State<CustomHeader> {
               alignment: Alignment.center,
             ),
             onTap: () {
-              if (widget.navigateTo != null) {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: widget.navigateTo!,
-                ));
-              }
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: widget.navigateTo,
+              ));
             },
           ),
         ],

@@ -8,7 +8,7 @@ String? description;
 
 fetchUserData(String pName) async {
   var url = Uri.parse(
-      "https://coderteam.net/api/auth/login?username='$pName'&current_level=1&current_lesson=1&score=4&level_id=1&gender=female");
+      "https://arabic.coderteam.net/api/auth/login?username='$pName'&current_level=1&current_lesson=1&score=4&level_id=1&gender=female");
 
   var result = await http.post(url);
   var respone = jsonDecode(result.body);
@@ -16,7 +16,7 @@ fetchUserData(String pName) async {
 }
 
 fetchLevelData() async {
-  var url = Uri.parse("https://coderteam.net/api/user/level/1");
+  var url = Uri.parse("https://arabic.coderteam.net/api/user/level/1");
   final headers = {
     'Authorization': 'Bearer ${sharedPreferences.getString("token")}',
   };
@@ -25,7 +25,7 @@ fetchLevelData() async {
 }
 
 fetchLessonData() async {
-  var url = Uri.parse("https://coderteam.net/api/user/lesson/1");
+  var url = Uri.parse("https://arabic.coderteam.net/api/user/lesson/1");
   final headers = {
     'Authorization': 'Bearer ${sharedPreferences.getString("token")}',
   };

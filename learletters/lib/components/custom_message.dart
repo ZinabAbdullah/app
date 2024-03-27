@@ -1,6 +1,5 @@
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
-
 import '../color.dart';
 
 Widget customMessage(String title) {

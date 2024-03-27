@@ -9,7 +9,6 @@ import 'package:learletters/screens/levels_screen.dart';
 import '../components/custom_clipper.dart';
 import '../components/custom_text.dart';
 import '../color.dart';
-import '../models/level_model.dart';
 
 class ScreenChoose extends StatefulWidget {
   const ScreenChoose({super.key});
@@ -23,7 +22,7 @@ class _ScreenChooseState extends State<ScreenChoose> {
 
   fetchUserData(String pName, String gender) async {
     var url = Uri.parse(
-        "https://coderteam.net/api/auth/login?username='$pName'&current_level=1&current_lesson=1&score=4&level_id=1&gender=$gender");
+        "https://arabic.coderteam.net/api/auth/login?username='$pName'&current_level=1&current_lesson=1&score=4&level_id=1&gender=$gender");
 
     var result = await post(url);
     var respone = jsonDecode(result.body);
@@ -210,8 +209,11 @@ class _ScreenChooseState extends State<ScreenChoose> {
               title: "اختيار",
               navigateTo: (context) {
                 fetchUserData(perconalName, gender);
+                // ? fetchUserData(perconalName, gender)
+                // : Center(
+                //     child: CircularProgressIndicator(),
+                //   );
                 sharedPreferences.setString("token", levelModel.accessToken!);
-
                 return const LevelsScreen();
               },
             ),

@@ -1,11 +1,11 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:learletters/components/custom_button.dart';
 import '../../color.dart';
 import '../../components/custom_header.dart';
 import '../../components/custom_progress_bar.dart';
 import '../components/custom_message.dart';
+import '../main.dart';
 import 'challenge_screen2.dart';
 
 class FirstChallengeScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class FirstChallengeScreen extends StatefulWidget {
 class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
   int currentIndex = 0;
 
-  List<String> audio = ["alph.mp3", "alph.mp3", "alph.mp3"];
+  List<String> audio = ["letter1.mp3", "letter2.mp3", ""];
 
   void goToNextScreen() {
     if (currentIndex < audio.length - 1) {
@@ -26,7 +26,6 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
         currentIndex++;
       });
     } else {
-      // Navigate to a different screen if needed
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -81,8 +80,10 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                             customMessage(
                               'يا ترى ماهو شكل الحرف الذي تسمعه',
                             ),
-                            Image.asset("assets/images/majed.png",
-                                height: 188, width: 121),
+                            Image.asset(
+                                "${sharedPreferences.getString("image")}",
+                                height: 188,
+                                width: 121),
                           ],
                         ),
                         Container(
@@ -127,7 +128,7 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                         Directionality(
                           textDirection: TextDirection.rtl,
                           child: Padding(
-                            padding: const EdgeInsets.only(right: 15.0),
+                            padding: const EdgeInsets.only(right: 40.0),
                             child: SizedBox(
                               height: 60,
                               width: 300,
@@ -167,7 +168,11 @@ class _FirstChallengeScreenState extends State<FirstChallengeScreen> {
                                         selectedletter = index;
                                         if (selectedletter == currentIndex) {
                                           final player = AudioPlayer();
-                                          player.play(AssetSource('alph.mp3'));
+                                          player.play(
+                                              AssetSource('excellent.mp3'));
+                                        } else {
+                                          final player = AudioPlayer();
+                                          player.play(AssetSource('retry.mp3'));
                                         }
                                       },
                                     );

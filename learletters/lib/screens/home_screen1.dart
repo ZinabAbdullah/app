@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:learletters/components/custom_header.dart';
 import '../../components/custom_button.dart';
-import '../components/custom_paint.dart';
 import 'home_screen2.dart';
-import 'package:dio/dio.dart';
+
+int star = 0;
 
 class FirstHomeScreen extends StatefulWidget {
   const FirstHomeScreen({
@@ -21,19 +22,6 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
     //getletter();
     super.initState();
   }
-
-  // var jsonList;
-  // void getletter() async {
-  //   final response =
-  //       await Dio().get('https://jsonplaceholder.typicode.com/users');
-  //   print(response.data[1]["id"]);
-  // }
-  //
-  // @override
-  // void setState(VoidCallback fn) {
-  //   //jsonList response.
-  //   super.setState(fn);
-  // }
 
   // final audioPlayer = AudioPlayer();
   bool isPlaying = false;
@@ -57,64 +45,11 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
             ),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Image.asset("assets/images/buttonbackground.png"),
-                          Image.asset("assets/images/backword.png"),
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    GestureDetector(
-                      // child: Visibility(
-                      //   visible: clickCount == 0 ? true : false,
-                      //   child: Container(
-                      //     height: clickCount < 1 ? 60 : 56,
-                      //     width: clickCount < 1 ? 60 : 56,
-                      //     decoration: BoxDecoration(
-                      //       boxShadow: clickCount < 1
-                      //           ? [
-                      //               const BoxShadow(
-                      //                 color: lightBlueColor,
-                      //                 blurRadius: 10,
-                      //                 // spreadRadius: 1,
-                      //               )
-                      //             ]
-                      //           : [],
-                      //     ),
-                      //     child: Stack(
-                      //       alignment: Alignment.center,
-                      //       children: [
-                      //         Image.asset("assets/images/buttonbackground.png"),
-                      //         Image.asset("assets/images/forword.png"),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Image.asset("assets/images/buttonbackground.png"),
-                          Image.asset("assets/images/forword.png"),
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const SecondHomeScreen(),
-                        ));
-                      },
-                    ),
-                  ],
+                CustomHeader(
+                  navigateTo: (context) => SecondHomeScreen(),
                 ),
                 Image.asset("assets/images/ألف.png"),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 GestureDetector(
@@ -126,9 +61,10 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                         top: -25,
                         right: 5,
                         child: Text(
-                          clickCount == 3 || clickCount >= 1
-                              ? "$clickCount"
-                              : "",
+                          // clickCount == 3 || clickCount >= 1
+                          //     ? "$clickCount"
+                          //     : "",
+                          "3",
                           style: TextStyle(
                             fontSize: 40,
                             foreground: Paint()
@@ -146,9 +82,6 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                   onTap: () async {
                     setState(() {
                       click++;
-                      // final player = AudioPlayer();
-                      // player.play(AssetSource('alph.mp3'));
-                      // player.dispose();
                     });
 
                     final player = AudioPlayer();
@@ -161,23 +94,26 @@ class _FirstHomeScreenState extends State<FirstHomeScreen> {
                     if (clickCount == 3 || clickCount >= 1) {
                       clickCount--;
                     }
-
-                    // If file located in assets folder like assets/sounds/note01.wave"
-
-                    // await player.play('assets/audioes/excellent.mp3');
-
-                    // _audioPlayer.play('assets/audioes/excellent.mp3' as Source);
                   },
                 ),
                 const SizedBox(
                   height: 60,
                 ),
-                CustomButton(
-                  navigateTo: (context) => const SecondHomeScreen(),
-                  backgroundColor: lightBlueColor,
-                  textBorderColor: lightBlackBorderColor,
-                  title: 'التالي',
-                ),
+                click >= 3
+                    ? CustomButton(
+                        navigateTo: (context) {
+                          return const SecondHomeScreen();
+                        },
+                        backgroundColor: lightBlueColor,
+                        textBorderColor: lightBlackBorderColor,
+                        title: 'التالي',
+                      )
+                    : CustomButton(
+                        //navigateTo: (context) => const FirstHomeScreen(),
+                        backgroundColor: lightBlueColor,
+                        textBorderColor: lightBlackBorderColor,
+                        title: 'التالي',
+                      ),
               ],
             ),
           ),

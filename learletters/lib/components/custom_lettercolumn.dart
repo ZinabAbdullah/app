@@ -19,7 +19,7 @@ class CustomLetterColumn extends StatelessWidget {
           height: 4,
           width: 24,
           color: keywordLetterUnderLineColor,
-        )
+        ),
       ],
     );
   }

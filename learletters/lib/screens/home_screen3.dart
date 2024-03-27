@@ -5,14 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:learletters/color.dart';
 import 'package:learletters/screens/home_screen1.dart';
 import '../../components/custom_header.dart';
-import '../components/custom_dialog.dart';
 import '../components/custom_lettercolumn.dart';
 import '../components/custom_message.dart';
 import '../models/servece.dart';
-import 'home_screen2.dart';
 import 'package:flutter/services.dart';
-import 'levels_screen.dart';
-
 import 'levels_screen.dart';
 
 class ThirdHomeScreen extends StatefulWidget {
@@ -81,6 +77,7 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
   }
 
   var result = [];
+
   void initState() {
     result = genLatterRandom(Word!);
 
@@ -100,7 +97,7 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
             child: Column(
               children: [
                 CustomHeader(
-                  navigateTo: (context) => const SecondHomeScreen(),
+                  navigateTo: (context) => const LevelsScreen(),
                 ),
                 const SizedBox(
                   height: 15,
@@ -141,13 +138,6 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                       (index) => CustomLetterColumn(
                           text: index == 0 ? letter : "${wordList[index]}"),
                     ),
-                    // CustomLetterColumn(text: letter),
-                    // text: selectedletter == -1
-                    //     ? ""
-                    //     : "${result[selectedletter]}"),
-                    // CustomLetterColumn(text: "ر"),
-                    // CustomLetterColumn(text: "ن"),
-                    // CustomLetterColumn(text: "ب"),
                   ],
                 ),
                 const SizedBox(
@@ -200,10 +190,6 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                                 }
                               },
                             );
-                            // return CustomContainerRandomLetter(
-                            //   letter: "${result[index]}",
-                            //
-                            // );
                           })),
                     ),
                   ),
@@ -211,12 +197,6 @@ class _ThirdHomeScreenState extends State<ThirdHomeScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                // CustomButton(
-                //   backgroundColor: lightBlueColor,
-                //   textBorderColor: lightBlackBorderColor,
-                //   title: "التالي",
-                //   navigateTo: (context) => FourthHomeScreen(),
-                // ),
                 MaterialButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
